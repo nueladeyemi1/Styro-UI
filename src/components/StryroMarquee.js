@@ -31,9 +31,9 @@ const StyroMarquee = ({
         const determineWidth = () => {
             if (styroRef.current && refContainer.current) {
               setWidthContainer(
-                refContainer.current.getBoundingClientRect().width
+                (refContainer.current.getBoundingClientRect().width)/2
               );
-              setStyroWidth(styroRef.current.getBoundingClientRect().width);
+              (setStyroWidth(styroRef.current.getBoundingClientRect().width)/2);
             }
         }
 
@@ -45,6 +45,8 @@ const StyroMarquee = ({
             window.addEventListener('resize', determineWidth);
         }
     }, [isMounted]);
+
+    //Handling initial resize
 
     useEffect(()=>{
         setIsMounted(true)
@@ -66,7 +68,7 @@ const StyroMarquee = ({
             ? 'paused'
             : 'running',
         }}
-        className={className + 'marquee-container'}
+        className={`${className} marquee-container`}
         >
             {gradient && (
                 <div style={{
